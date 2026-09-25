@@ -1,0 +1,37 @@
+name: Dictionary feedback
+description: Report a lookup, accessibility, responsiveness, or installation problem.
+title: "[Dictionary] "
+body:
+  - type: markdown
+    attributes:
+      value: "This report will be public. Include only examples you are comfortable sharing. Review screenshots and crash reports for personal information; see [privacy and support](https://github.com/fwalterj/mongrel-dictionary-app/blob/main/PRIVACY.md)."
+  - type: input
+    id: build
+    attributes:
+      label: App version and build
+      description: Use the version shown in About. If this is feedback about the product page, say so.
+    validations:
+      required: true
+  - type: input
+    id: machine
+    attributes:
+      label: macOS version and Mac model
+      description: Include relevant accessibility settings or assistive technology when helpful.
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened?
+      description: Include reproduction steps, the lookup mode, and a non-private example term if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Optional screenshot or diagnostic excerpt
+      description: Remove personal information first. Do not attach private dictionaries, recovery backups, credentials, or whole diagnostic folders.
