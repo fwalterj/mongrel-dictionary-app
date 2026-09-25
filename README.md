@@ -2,42 +2,51 @@
 
 A quiet reference desk for the Mac. Look up a word, follow a connection, and get back to what you were doing.
 
-**Free to use · Native macOS · Offline lookup · Proprietary application**
+**Free of charge · Publicly inspectable source · PolyForm Perimeter · macOS 14+**
 
-Mongrel Dictionary brings definitions, synonyms, regional vocabulary, and word-level translations into one reading space. Ordinary lookup uses dictionaries stored on your Mac. There is no account or subscription to manage.
+Mongrel Dictionary brings definitions, synonyms, regional vocabulary, and word-level translations into one reading space. Ordinary lookup uses dictionaries stored on your Mac. There is no account, subscription, or paid feature tier.
 
 ## Availability
 
-Dictionary is in alpha evaluation. A public installer is **not available yet**: the current evaluation corpus is undergoing a redistribution and attribution review. This page will link to a signed, notarized Mac installer when that review and release verification are complete.
+**The application source is public here. A public installer is not available yet.** The existing evaluation corpus is undergoing a redistribution and attribution review, so its data and old installers are excluded from this checkout. The application code, tests, and build tools are available for inspection and source-only verification.
 
-The current evaluation build targets macOS 14 and later, with a universal app for Apple Silicon and Intel. It has been exercised on Apple Silicon running macOS 27. Physical Intel and macOS 14 testing remain outstanding. These are evaluation results, not a claim of universal compatibility.
+The app targets macOS 14 and later, with Apple Silicon and Intel builds. The evaluation app has been exercised on Apple Silicon running macOS 27. Physical Intel and macOS 14 testing remain outstanding. A source build without the corpus is not a replacement for a functioning Dictionary installation.
 
-## A useful object, thoughtfully made
+## One app in a body of work
 
-Mongrel treats everyday software as something worth making beautiful and dependable. A dictionary should give language room to breathe, make its sources understandable, and stay out of the reader's way.
+Mongrel explores familiar desktop tools without assuming that useful functionality needs to become a service, account, subscription, or upgrade funnel. Beauty, accessibility, local usefulness, and predictable behavior belong in ordinary utilities.
 
-Accessibility shapes the appearance. **Contrast** starts with a Black background and white text; **White** gives the equally direct inverse. Adjustable reading text, keyboard commands, visible selection, and support for reduced motion and transparency give people control over how they read. The optional Classic and Custom appearances offer other choices without making decoration essential to using the app.
+The suite should be recognizable through its decisions: use context the app already has, preserve the reader's place, keep advanced controls available without permanent clutter, and verify how features interact. These are continuing design obligations. Each app's documentation should say what is implemented and what remains an ambition. Read the [suite philosophy](PHILOSOPHY.md).
 
-Responsiveness matters during ordinary, repeated use: typing quickly, correcting a word, moving between entries, and returning later. We publish what was tested and what remains uncertain with each release. An alpha label should describe the evidence honestly.
+## Language consists of distinctions
 
-## At the desk
+Dictionary's aim is to make regional English intelligible on its own terms and help readers distinguish related words. The implementation preserves source labels, regional spelling counterparts, separate lookup modes, and linked references where its sources support them. It does not claim complete regional coverage or a comprehensive system of register and intensity labels.
 
-- Search while you type; press Return to commit a lookup to history.
-- Move between definitions, synonyms, translations, and regional or slang references.
-- Open a compact Quick Lookup window with Shift-Command-Space.
-- Look up selected text through the macOS Services menu.
-- Save words and revisit recent lookups on the same Mac.
+At the desk, you can preview searches while typing, commit a lookup to history with Return, save the word being read, use a compact Quick Lookup window, and look up selected text through macOS Services. Translation is a word and phrase reference, not sentence translation. Coverage varies by source.
 
-Coverage varies by dictionary. Translation is a word and phrase reference, not a sentence translation service. Source labels help identify where a result comes from; they do not imply endorsement by a dictionary's publisher.
+Contrast starts with **Black** and offers an explicit **White** option. Adjustable reading text, keyboard commands, visible selection, and reduced-motion/transparency support make reading choices part of the design. Classic and Custom remain optional. See [accessibility and keyboard use](ACCESSIBILITY.md).
 
-## Free use and ownership
+## Inspect the thinking
 
-The official app is intended to be free to download and use, including for study and work. The application is proprietary and is **not open source**. Free access to a useful tool and permission to reuse its implementation are separate choices.
+[Design decisions](DESIGN-DECISIONS.md) traces concrete observations through decisions, implementation, and tests: composing text versus the displayed word, preview versus committed history, stale background work, bounded caches, and self-contained resources.
 
-This public space is for product information, guides, release notes, and feedback. The application source is maintained separately. Its underlying dictionaries keep their own licenses and attribution; Mongrel does not claim ownership of those works. See [the application-use terms](APP-LICENSE.md).
+Start with [DictionarySession](MongrelDictionary/App/ViewModels/DictionarySession.swift), [DictionaryRepository](MongrelDictionary/App/Services/DictionaryRepository.swift), and the [tests](MongrelDictionary/Tests). [Development and validation](DEVELOPMENT.md) explains the source map and corpus boundary.
+
+```bash
+cd MongrelDictionary
+./Scripts/verify-source.sh
+```
+
+On a Mac with full Xcode and XcodeGen, this builds optimized universal application source and runs native fixture-based XCTest coverage. It does not package a public installer or establish real-corpus performance.
+
+## Ownership and permitted use
+
+The official app is free for ordinary personal, educational, and professional use. Original code is **source-available under [PolyForm Perimeter 1.0.1](LICENSE), not open source**. It permits use, changes, and distribution for permitted purposes while restricting provision of a competing product as defined in the license. Publishing source does not transfer copyright ownership.
+
+[NOTICE.md](NOTICE.md) defines the license scope. [Brand rights](BRANDING.md) remain separate; third-party materials retain their own terms. [Free use and source licensing](APP-LICENSE.md) explains the distinction without replacing the standard license.
 
 ## Privacy and feedback
 
-The current app performs lookups locally and has no app analytics or account service. History, saved words, and preferences stay in the app's local macOS storage. See [privacy and support](PRIVACY.md) for the limits of that statement and what to omit from a bug report.
+The current app performs lookups locally and has no app analytics or account service. History, saved words, and preferences stay in local macOS storage. Read [privacy and support](PRIVACY.md) before attaching diagnostic material.
 
-Use the [feedback form](https://github.com/fwalterj/mongrel-dictionary-app/issues/new?template=feedback.yml). Useful alpha feedback includes the app version and build, macOS version, Mac model, lookup mode, an example word you are comfortable sharing, and the steps that produced the problem. [Accessibility and keyboard use](ACCESSIBILITY.md) describes the current controls and remaining validation.
+Use the [feedback form](https://github.com/fwalterj/mongrel-dictionary-app/issues/new?template=feedback.yml) for bugs, accessibility problems, and unclear interactions. Include the build, macOS version, Mac model, and a non-private example. [Contribution guidance](CONTRIBUTING.md) explains the expectations for changes.

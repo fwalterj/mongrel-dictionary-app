@@ -1,23 +1,13 @@
-# Mongrel Dictionary application-use terms
+# Free use and source licensing
 
-Copyright © 2026 Fred James. All rights reserved in Mongrel's original application code, artwork, and documentation, except as expressly permitted below.
+Mongrel's official apps are free of charge for ordinary personal, educational, and professional use. Dictionary has no account, subscription, paid feature tier, or lookup service. Public installer availability is stated separately in the [README](README.md#availability).
 
-## Free use of official releases
+Dictionary's original application code, tests, build tools, and documentation are available under the **[PolyForm Perimeter License 1.0.1](LICENSE)**. The license text is reproduced unchanged from the PolyForm Project. [NOTICE.md](NOTICE.md) identifies its scope and copyright holder.
 
-For an official Mongrel Dictionary release that includes these terms, you may download, install, run, and make backup copies of the app on compatible Macs you own or are authorized to use. This permission is non-exclusive and carries no license fee. It includes personal, educational, and professional use.
+Perimeter permits use, modification, and distribution for permitted purposes. It restricts providing others with a competing product as defined in the license; competition can include a free product. It does not prohibit professional use merely because someone earns money at work. This paragraph is a summary, not an alternative set of license terms.
 
-These terms do not announce the availability of an installer. See the [current release status](README.md#availability).
+This is **source-available software, not open source**. Making the source inspectable does not transfer copyright ownership. Fred retains ownership of Fred's original work, and other rights holders retain theirs.
 
-## Proprietary application
+Mongrel names, logos, and app iconography have [separate brand terms](BRANDING.md). Third-party components and lexical data retain their own licenses. Perimeter does not replace those licenses or establish redistribution permission for a dataset.
 
-Mongrel Dictionary is not open source. Free use of the official app does not grant a license to reuse, modify, sell, or redistribute Mongrel's original implementation or artwork. Additional permission requires a separate written agreement, except where applicable law gives you rights that cannot be restricted by these terms. Any rights granted by the hosting platform's terms remain unaffected.
-
-Please share the official download link. No permission is granted to present a modified or unrelated product as an official Mongrel release. Ordinary truthful references to Mongrel remain welcome.
-
-## Independently licensed material
-
-Third-party dictionaries, data, and components retain their own copyrights and licenses. Their notices accompany the releases that include them. Those licenses govern those materials and take precedence over any conflicting restriction here. These terms do not reduce upstream rights to copy, modify, redistribute, or obtain corresponding source, and do not claim ownership of third-party material.
-
-## Evaluation software
-
-Alpha and beta releases may contain errors or incomplete coverage. To the extent permitted by applicable law, the app is provided as is, without warranties of merchantability, fitness for a particular purpose, or uninterrupted operation. These terms do not limit rights or remedies that applicable law does not allow to be excluded.
+These terms describe the source published with this license and releases that include it. Previous release artifacts retain their accompanying terms; this page does not repackage, relicense, or clear their third-party contents for public distribution.

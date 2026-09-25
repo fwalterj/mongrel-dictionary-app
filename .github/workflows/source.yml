@@ -1,0 +1,34 @@
+name: Verify public application source
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install project generator
+        run: brew install xcodegen
+      - name: Build universal source and run native fixture tests
+        working-directory: MongrelDictionary
+        run: ./Scripts/verify-source.sh
+      - name: Preserve source verification logs
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: source-verification-logs
+          path: MongrelDictionary/build/source-verification/*.log
+          if-no-files-found: ignore
+          retention-days: 14

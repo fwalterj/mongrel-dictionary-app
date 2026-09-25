@@ -1,0 +1,72 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Xcode
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+build/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Large data files — do not commit these
+*.xml
+*.xml.bz2
+*.ttl
+*.tar.gz
+*.tar.gz.sig
+*.bz2
+*.pdf
+
+# Certificates & signing
+*.cer
+*.p12
+*.p8
+*.provisionprofile
+
+# Logs
+*.log
+*.profraw
+__pycache__/
+*.pyc
+.tmp-pdf-venv/
+
+# Reproducible/generated dictionary outputs
+MongrelDictionary/App/Data/OfflineRuntime/
+MongrelDictionary/App/Data/CompanionExports/
+
+# Local Beta products
+MongrelDictionary/release/
+
+# Public-source boundary: evaluation data needs separate redistribution review.
+/MongrelDictionary/ReferenceNotesAuthoring/
+/MongrelDictionary/App/Data/OfflineArchives/*
+!/MongrelDictionary/App/Data/OfflineArchives/README.md
+
+# Local corpus workbench inputs stay outside this public source repository.
+# Evaluation runtime archives and authoring notes are also excluded until
+# their redistribution requirements have been resolved.
+/01MAY2026_Resources/
+/Australian-English-Dictionary-main/
+/Moby-Project-main/
+/THEMAS-master/
+/WordNet-3.0/
+/WordNet-3.0 2/
+/dict/
+/etymology-db-master/
+/fd-dictionaries-master/
+/oo2_th_en_GB/
+/website-master/
+/za-mafoko-master/
+
+# Local research and handoff artifacts
+/MONGREL_APP_STATUS_AND_HISTORY.md
+/slang.docx
+/userChrome-glass.css

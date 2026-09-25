@@ -1,0 +1,260 @@
+{
+  "sourceRevision": "6b1e04f09300e62fb52c336ab36a4f0f04211329",
+  "scope": "Application code, tests, build configuration, tools, and separately reserved branding assets. Runtime corpora, reference-note authoring files, release artifacts, private history, and local research are excluded.",
+  "files": [
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "sha256": "a48f15bdf508ec010dadd6887a73a7ae160cc28f932bd9348da5bc40b40f3a38"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-128.png",
+      "sha256": "9c1a6a329757810b8e4eb80a4fcab324adc21a86eb4d0c37f710cd8d13bde906"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-16.png",
+      "sha256": "3308a87c8e1b3411667b9fa05b24508451492eabc22412348238bd1f0e76957f"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-256.png",
+      "sha256": "f5a273890c2013f244ce01050d70c2ec48a2c847974a73ce81a629c778d94916"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-32.png",
+      "sha256": "b8549e0b76e61197784806e9ee7343c649b7cde01384f4f29fc872ddd7189057"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512.png",
+      "sha256": "926eff21d983fea1163111d192c4885d4e57bccb5916b380d48a00c6565169df"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/AppIcon-64.png",
+      "sha256": "4ecb95336e17a61886e858902c18d7651d8a5189f6a87441abf2b1f4fbaa9fbf"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "9827e4c976c86325472b3d46e917a74340e4f3259bb05b784091f4849448321c"
+    },
+    {
+      "path": "MongrelDictionary/App/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b"
+    },
+    {
+      "path": "MongrelDictionary/App/Core/BoundedLookupCache.swift",
+      "sha256": "bf91df22a8f08f2083f646e098fff0f792973d2cb6a42ad47499056b8a98ed82"
+    },
+    {
+      "path": "MongrelDictionary/App/Core/DictionaryLookupRequest.swift",
+      "sha256": "6301acf9f2dc08a36b33621552e91302cb7c282114e3e48654ff4d1a558d1a0d"
+    },
+    {
+      "path": "MongrelDictionary/App/Core/DictionaryPreferences.swift",
+      "sha256": "4b70103c183e54c9649ec99f35ee9ed8d3c7ccb41aff0aa13fa2fd15c9583ee0"
+    },
+    {
+      "path": "MongrelDictionary/App/Core/MongrelAppearanceModel.swift",
+      "sha256": "f4caa34baf202659e7fb7d8f420a14dcec9e65c4032e281493cec6cf270d7d19"
+    },
+    {
+      "path": "MongrelDictionary/App/Core/QueryIntent.swift",
+      "sha256": "59a68c4dd80dc060e028b61d0661cd491af905e0312c5c3d117128754e4ac7ea"
+    },
+    {
+      "path": "MongrelDictionary/App/Design/DictionaryDesignSystem.swift",
+      "sha256": "5b589617bd3caf6a4440d6f2c19ee5e5ec3071426d69269e3cbce0e09b01fd0c"
+    },
+    {
+      "path": "MongrelDictionary/App/Design/MongrelAppearance.swift",
+      "sha256": "1836ad4f70c5f97a7566c221f36b25962c8e3a628785296a4701b89902180645"
+    },
+    {
+      "path": "MongrelDictionary/App/Info.plist",
+      "sha256": "b971e9fb52984ddf60a7ed404c66306524cbdc3e65dcf9272272f6464f1568e8"
+    },
+    {
+      "path": "MongrelDictionary/App/Integration/DictionaryApplicationDelegate.swift",
+      "sha256": "9ade4c5990217eeb97d3b9ba9172e924f426d4b5e641a058da8a0ad73e13ebe6"
+    },
+    {
+      "path": "MongrelDictionary/App/MongrelDictionary.entitlements",
+      "sha256": "267efdc74ea00b0268d9f13e5dd9fefc364ef7b88a87ccc8897d14de49dc5408"
+    },
+    {
+      "path": "MongrelDictionary/App/MongrelDictionaryApp.swift",
+      "sha256": "1b444eeabb3753f72688076aa26c49f8fa493432b65f4d3e9750feb559391e51"
+    },
+    {
+      "path": "MongrelDictionary/App/Services/DictionaryRepository.swift",
+      "sha256": "fe6004a19e233f7f0c9046b86ecbb14c3a89315e54bb42860bead3dcd9b8cca3"
+    },
+    {
+      "path": "MongrelDictionary/App/ViewModels/DictionarySession.swift",
+      "sha256": "667041622c5d562723868d0a96742df2b306d058c94ca631525999a2ffb21171"
+    },
+    {
+      "path": "MongrelDictionary/App/Views/DictionaryContentView.swift",
+      "sha256": "19a72489d6701cf22e7a414392e2652adfc3db36ff14b331fea09a04e91e4dda"
+    },
+    {
+      "path": "MongrelDictionary/App/Views/DictionaryHelpView.swift",
+      "sha256": "bcad27c74587365bf4fd3e5580460467d0fefab8a4cc143925613ca16eea2a89"
+    },
+    {
+      "path": "MongrelDictionary/App/Views/DictionaryResultPresentation.swift",
+      "sha256": "9dd6205459a8efd44fe127b0008cc233bd59695bea2e0a6a7dec6098f6e8f86f"
+    },
+    {
+      "path": "MongrelDictionary/App/Views/DictionarySettingsView.swift",
+      "sha256": "35b873062c06fe51b45de32a325a74a71077321e1629233c887091c8f1896ace"
+    },
+    {
+      "path": "MongrelDictionary/App/Views/QuickLookupView.swift",
+      "sha256": "da9c474c042ecc50c8a9fb314a330217daa49038298e5492b8acfe27e4d54764"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/benchmark-latency.sh",
+      "sha256": "d2b1eaf04d7bf1c1ede8f7998e4318c3d6fffaaf6352bfa209b8375fcef4f32e"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/benchmark-startup.sh",
+      "sha256": "d79776ea1baa52c7cdd791b7588f0865ddd28b9fde6e1d6fb4f929f999737bd4"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/build-beta.sh",
+      "sha256": "e05ba86d867d983eb9be836b24bfbcb7139c7850e112c0a25e4a1152eec14a38"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/compile-offline-runtime.py",
+      "sha256": "103f95df4a7359ea353e05d18fa262091f61622f9482731be51a610c76be7ecd"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/compile-reference-notes.py",
+      "sha256": "ca10af296a1fd5e0257c541f2bb360d8d2271d60d961b5ec16b27a9a860acbdb"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/export-companion-lexicon.py",
+      "sha256": "75cb026933da3f0795d08605c37026b35b9ff1181aec49a00b0128b1fa987e32"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/smoke-test.sh",
+      "sha256": "d6f44abf3886bbadec0a1e2686d9f723c596fb6619e064336cb9ffd4f3940f8c"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/trash-items.swift",
+      "sha256": "de9cd9da0a842a5fc825715fdb867e0b600cc41f75caf4268ab6c83e4fbcf2e6"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/validate-reference-notes.py",
+      "sha256": "8344d750be1b8a07e2cbb012b1069548aa544b1e309d59c98389c77b9dcbbe9b"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/verify-runtime.py",
+      "sha256": "5e4ce53a960b02d09a86d45e102a657c2cc9a7a192a09238cdfdee42cfe28751"
+    },
+    {
+      "path": "MongrelDictionary/Scripts/verify-source.sh",
+      "sha256": "ef01ee04944f0029fd418c04de47a9e2d09494837882112b5ffd115d30bae7b2"
+    },
+    {
+      "path": "MongrelDictionary/Tests/AppearanceContrastTests.swift",
+      "sha256": "42422f985f03d47c68f8bf324b34adfb0a112d79155ff9ff4ce6234e70392d8f"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryDeepLookupSmokeTests.swift",
+      "sha256": "79dda90c1617a40e71f2cbb0d3eba495595800d25b673378fbd7733ff96ba2b7"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryGlossaryCoverageSmokeTests.swift",
+      "sha256": "e21eec5bc2036605fe4206ae5804a3858b5f5137278ae7ee76923ea2b3c1fbbb"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryInventorySmokeTests.swift",
+      "sha256": "50ec22badbab9c74b50628229ffabbca665c85f948f37551fa9acaac1d1d112b"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryLatencyBenchmarkTests.swift",
+      "sha256": "442271c7876e89408fcbe156f8ebfaa14649004b02a5f9c727461ec4d0bb761a"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryLaunchWarmupSmokeTests.swift",
+      "sha256": "6e406c6d80b91b1293d9c92921963f93439df364c312362f021504012df44f4d"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryLexicalBehaviorDeepSmokeTests.swift",
+      "sha256": "822490631c960a84e53f58c18a019626d6974725f89b96860a622497d785730b"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryLexicalIngestionDeepSmokeTests.swift",
+      "sha256": "db4d6c22ab8d7e31bd0a4f9980b40d4176e8862fd0c816d2bdd9d20962c648c7"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryLongmanCoverageSmokeTests.swift",
+      "sha256": "09bd3601d751d12995f1c5d836d261cb8ef4ecd34344020afdf332cf91cd25c4"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryLookupRequestTests.swift",
+      "sha256": "49d193483c975fbf33b0264d02348f68df68984fd12f85ea45fba4f49432d7a0"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryPhraseBehaviorSmokeTests.swift",
+      "sha256": "0414b8b7ebb0c8462d31b2500975f1a7ea5a8c919a63d543027921da9716758a"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryQuickCanarySmokeTests.swift",
+      "sha256": "c597d4e8abaf27a78396b9e8ff3f774b3cd446c4c9cfd31b7d0fa4b9716fbe83"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryReferenceLatencySmokeTests.swift",
+      "sha256": "2c1f5a7274e4491baf46b7912114b07516a9f39adb46132a0b932c20053e09ac"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryReferenceNoteBehaviorSmokeTests.swift",
+      "sha256": "31a8710e0011c76bae5861e84a8e26c8bcdffae114c161754f99ee73751d6c91"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryRegionalCoverageSmokeTests.swift",
+      "sha256": "9fa5a0ac10ea22251b49852ee16875bc3668123061370b0b9ff0635ef19637bd"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryRegionalLatencySmokeTests.swift",
+      "sha256": "9b5556a33e994e9b7ca71d3d3c0a6ec7ad1cacbdd009e3972bcbf80f3fe2069d"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryReliabilityTests.swift",
+      "sha256": "2a9cb4b8e3d7dc0f5af22029558994654b1bdc60e286616efabbc5f60a4de88e"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionarySessionStartupTests.swift",
+      "sha256": "d05c2f2a3204f28c9aebe880626e22f6f906c1a1a809dd0acb02098a6fb7f284"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionarySmokeTestSupport.swift",
+      "sha256": "019877846652fd339eb1f08bef16da113caffec1ec834e209965538e66d0cdb7"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryStartupBenchmarkTests.swift",
+      "sha256": "c8181bb31f5c4308a81edd383bb96fc79cd5ae1fdfaf7dd3f1a9300401d80445"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionarySynonymFallbackLatencySmokeTests.swift",
+      "sha256": "ece1d2d87e9ba46beb941367372d00e1e32e2bd31805a1e950958a17ac50e98e"
+    },
+    {
+      "path": "MongrelDictionary/Tests/DictionaryTranslationFallbackLatencySmokeTests.swift",
+      "sha256": "fb815e6e867b45be6803febd9131bd64aeffd8767ef66487137f7cb96b5df422"
+    },
+    {
+      "path": "MongrelDictionary/project.yml",
+      "sha256": "3176b44c13a1039d1b312c7354571820da9ddb30f1f5af38da2074cde1a1cc2d"
+    }
+  ],
+  "toolingChanges": [
+    {
+      "path": "MongrelDictionary/Scripts/verify-source.sh",
+      "change": "New optimized universal/source-fixture verification entry point."
+    },
+    {
+      "path": "MongrelDictionary/Scripts/verify-runtime.py",
+      "change": "Missing-data message explains the source-only checkout; validation requirements are unchanged."
+    }
+  ]
+}
