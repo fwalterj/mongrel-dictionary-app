@@ -13,6 +13,18 @@
 - Interactive checks exercised search, saving, mode switching, Clear History retaining saved/current words, and Quick Lookup. Core-specific placeholder/help text now states its actual coverage. Returning from Quick Lookup reuses a singleton Reference Desk instead of creating duplicate windows with shared state.
 - Developer ID identity and the saved notarization profile are present. An actual signing attempt reached a macOS private-key authorization prompt and was stopped while the owner was away. **No new Developer ID/notarized release is claimed.** Local ad-hoc test packaging is separate from the later authenticated public candidate. Physical Intel/macOS 14 and spoken VoiceOver testing remain outstanding.
 
+### Local package verification and remaining release gates
+
+Core Beta 0.9.1 beta.6, build `2026100806`, was packaged from source commit `9943f250ca3b3597c44b5e8ad1f6b41b19d118cf`. The universal app is approximately 89 MiB; ZIP is 34,682,290 bytes and DMG is 36,308,103 bytes. Both checksums passed. A read-only DMG mount passed strict nested ad-hoc signature verification, contained both executable architectures, and retained all ten corpus-file checksums and license notices. The bundle identifier is `com.mongrel.dictionary.corebeta`. The mounted image was ejected after inspection.
+
+The final app was launched separately, without installation over the evaluation app. Interactive checks confirmed all 18 “bank” definitions, Show More/Show Less, persisted saved words, accurate Core wording, accessible Help attribution, and Quick Lookup returning to the same `dictionary-main` window. This was not a full VoiceOver or clean-machine Gatekeeper test.
+
+Local test artifacts remain ignored under `MongrelDictionary/release/core-beta6-local-final/`. **Do not upload these ad-hoc artifacts as an official public download.** To finish:
+
+1. Confirm whether the first public release should be this narrower English definitions/synonyms edition; the fuller corpus remains excluded pending redistribution review.
+2. Run the documented Developer ID/notarized packaging command with the owner available for the macOS private-key prompt. The existing certificate/profile need not be recreated merely to update the app. Use a fresh output directory.
+3. Verify the new app and DMG's stapled tickets and Gatekeeper assessments, test the download on another Mac if available, then publish those newly authenticated assets with their matching checksums and manifest. Publishing binaries is separate from pushing source.
+
 ## Historical baseline — 25 September 2026
 
 This record concerns the source-available application snapshot. It does not replace the separate evaluation app's release or corpus validation.
