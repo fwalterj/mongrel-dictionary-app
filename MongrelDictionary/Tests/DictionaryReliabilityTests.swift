@@ -32,7 +32,8 @@ final class DictionaryReliabilityTests: XCTestCase {
             var timings: [Double] = []
             for (index, word) in words.enumerated() {
                 let start = DispatchTime.now().uptimeNanoseconds
-                _ = await repository.search(term: word, intent: QueryIntent.allCases[index % 4],
+                let intents = DictionaryCorpusEdition.availableIntents
+                _ = await repository.search(term: word, intent: intents[index % intents.count],
                                             bypassCache: true, allowBackgroundEnrichment: false)
                 timings.append(Double(DispatchTime.now().uptimeNanoseconds - start) / 1_000_000)
             }
@@ -160,7 +161,7 @@ final class DictionaryReliabilityTests: XCTestCase {
             ("happy", .synonyms), ("good", .synonyms),
             ("hello", .translation), ("water", .translation),
             ("arvo", .slang)
-        ]
+        ].filter { DictionaryCorpusEdition.availableIntents.contains($0.1) }
         var baseline: [[String]] = []
         for (term, intent) in cases {
             let cards = await repository.search(term: term, intent: intent, bypassCache: true)

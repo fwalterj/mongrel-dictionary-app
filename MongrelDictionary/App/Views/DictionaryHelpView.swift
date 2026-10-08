@@ -1,4 +1,5 @@
 import SwiftUI
+import MongrelDictionaryCore
 
 struct DictionaryHelpView: View {
     @ObservedObject private var appearance = MongrelAppearancePreferences.shared
@@ -6,6 +7,13 @@ struct DictionaryHelpView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
+                if DictionaryCorpusEdition.isPublicCore {
+                    Text(DictionaryCorpusEdition.coreDescription)
+                        .foregroundStyle(DesignTokens.textPrimary)
+                    if let notices = DictionaryCorpusEdition.noticesURL {
+                        Link("Corpus sources, licenses, and changes", destination: notices)
+                    }
+                }
                 VStack(alignment: .leading, spacing: 8) {
                     DictionarySectionEyebrow(text: "Lookup Help")
                     Text("Shortcuts for the Reference Desk")
@@ -28,7 +36,7 @@ struct DictionaryHelpView: View {
                 ])
 
                 helpSection(title: "Modes and history", rows: [
-                    ("Command-1 to 4", "Define, Synonyms, Translation, Slang — reuses the last lookup if the field is empty"),
+                    (DictionaryCorpusEdition.isPublicCore ? "Command-1 and 2" : "Command-1 to 4", DictionaryCorpusEdition.isPublicCore ? "Define and Synonyms — other modes are not included in Core Beta" : "Define, Synonyms, Translation, Slang — reuses the last lookup if the field is empty"),
                     ("Command-[ and ]", "Back and forward through committed lookups"),
                     ("Shift-Command-V", "Paste and look up"),
                     ("Option-Command-L", "Look up the highlighted text, not the clipboard"),

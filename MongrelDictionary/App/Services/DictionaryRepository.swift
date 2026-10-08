@@ -308,7 +308,13 @@ public actor DictionaryRepository {
     }
 
     private func buildInventory(detailLevel: InventoryDetailLevel) -> [SourceInventory] {
-        [
+        if resourceBundle.url(forResource: "PUBLIC-CORPUS", withExtension: "json") != nil {
+            return [
+                sourceInventory(name: "WordNet 2025 (OEWN XML)", detail: "Open English Wordnet 2025 · CC BY 4.0", relativePath: "english-wordnet-2025.xml"),
+                sourceInventoryWordNetClassic()
+            ]
+        }
+        return [
             sourceInventory(
                 name: "WordNet 2025 (OEWN XML)",
                 detail: "Live · SAX-parsed on first search · WordNet® attribution required (Princeton)",
@@ -851,6 +857,10 @@ public actor DictionaryRepository {
         allowBackgroundEnrichment: Bool = true
     ) async -> [SearchCard] {
         if Task.isCancelled { return [] }
+        if resourceBundle.url(forResource: "PUBLIC-CORPUS", withExtension: "json") != nil,
+           intent == .translation || intent == .slang {
+            return [SearchCard(title: "Not included in Core Beta", source: "Edition coverage", summary: DictionaryCorpusEdition.coreDescription, chips: ["coverage"])]
+        }
         if allowBackgroundEnrichment {
             activeSearchGeneration &+= 1
         }

@@ -21,8 +21,10 @@
 		34329FDBE9347CC3DC078F27 /* DictionaryLatencyBenchmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257982F098A359E17CFBFE2 /* DictionaryLatencyBenchmarkTests.swift */; };
 		3679435AC454F699AC4F4142 /* DictionaryStartupBenchmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32562967597E2D4EE97F3188 /* DictionaryStartupBenchmarkTests.swift */; };
 		37D9EDE22A1C7BE9AA2C1D04 /* DictionaryReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ABA432827894C3D8E7645D /* DictionaryReliabilityTests.swift */; };
+		386E73F0E6E026933544A437 /* DictionaryCorpusEdition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BF5719EF5F6E159DAC0414 /* DictionaryCorpusEdition.swift */; };
 		39BCD1DFC02483C033E05F86 /* DictionaryReferenceLatencySmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0075E7652936C6223BE91D /* DictionaryReferenceLatencySmokeTests.swift */; };
 		3C22FC77F29D48D642B0C958 /* BoundedLookupCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F206C91EBADD8024B548D2 /* BoundedLookupCache.swift */; };
+		4E25E614B67FADE8BD22509A /* test_runtime_compiler.py in Resources */ = {isa = PBXBuildFile; fileRef = CF770096F918DB9DBA002375 /* test_runtime_compiler.py */; };
 		4F436722D264CF8A97DF2D3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97D79A771518D66C9D5C0018 /* Assets.xcassets */; };
 		503ED23598259865BBE1225B /* MongrelDictionaryCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11284E79515371B094A668D8 /* MongrelDictionaryCore.framework */; };
 		5813839A02362454FCF9A131 /* DictionarySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D283DE4BF9595C1097E21F /* DictionarySettingsView.swift */; };
@@ -33,6 +35,7 @@
 		77C31551A38C09AD3AB26840 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B7AC50D906294A74B9E0BA32 /* README.md */; };
 		7BCB311900CE1B6B04015418 /* DictionaryRegionalCoverageSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B1956D8FDD16500115EC4 /* DictionaryRegionalCoverageSmokeTests.swift */; };
 		831018C5F4BF3A939D1DD4E6 /* DictionaryRegionalLatencySmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824BA34F5B9E8902EB044FDA /* DictionaryRegionalLatencySmokeTests.swift */; };
+		86BD38C2C8B729D78935C217 /* test_runtime_compiler.cpython-314.pyc in Resources */ = {isa = PBXBuildFile; fileRef = 919756B4D41FD447C1D14746 /* test_runtime_compiler.cpython-314.pyc */; };
 		8B5E02A95E13FADFB78F931E /* DictionaryApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBDF37754C4E7F09E3A5F6A /* DictionaryApplicationDelegate.swift */; };
 		8D74B6985FBC6F0AAAA58A48 /* DictionaryQuickCanarySmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC4598A4ACDF8F77AFA4D61 /* DictionaryQuickCanarySmokeTests.swift */; };
 		94251CC54C757C7CA595CE0B /* AppearanceContrastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79FE6C4CF9A9AC16DD0DA2A /* AppearanceContrastTests.swift */; };
@@ -45,6 +48,7 @@
 		B33F69706E6854A4AF3B865C /* DictionaryGlossaryCoverageSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C350A6085E871F51D06034E /* DictionaryGlossaryCoverageSmokeTests.swift */; };
 		B8455DBCCEB2231A17F9F878 /* DictionarySessionStartupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975B8D6791ADFAB92208FB6 /* DictionarySessionStartupTests.swift */; };
 		BBA985499B1FBFC6538822C2 /* DictionaryLookupRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2FCDB46B85EC9E82140B00 /* DictionaryLookupRequestTests.swift */; };
+		C8BC706593426262ACC83FCD /* PublicCoreCorpusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FAD0D1025D37F8F7C029A0 /* PublicCoreCorpusTests.swift */; };
 		D1BFDCFA51817B2ED6968C69 /* MongrelDictionaryCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11284E79515371B094A668D8 /* MongrelDictionaryCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4418628577B4BC494F5E29D /* DictionaryDeepLookupSmokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352F07BC3869B3184EE5C5DC /* DictionaryDeepLookupSmokeTests.swift */; };
 		D7CC500B4750F8CC7E8CB7C2 /* MongrelAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548326732B0DE0EDF09D1E3E /* MongrelAppearance.swift */; };
@@ -117,6 +121,7 @@
 		4B73CB596AAD7FD703D43C50 /* MongrelAppearanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongrelAppearanceModel.swift; sourceTree = "<group>"; };
 		4C350A6085E871F51D06034E /* DictionaryGlossaryCoverageSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryGlossaryCoverageSmokeTests.swift; sourceTree = "<group>"; };
 		4E7C27C6E389F2CE8C2CCF0D /* DictionaryResultPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryResultPresentation.swift; sourceTree = "<group>"; };
+		50BF5719EF5F6E159DAC0414 /* DictionaryCorpusEdition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCorpusEdition.swift; sourceTree = "<group>"; };
 		52995D0B5EF30B5A2C7FBE8A /* DictionaryPhraseBehaviorSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryPhraseBehaviorSmokeTests.swift; sourceTree = "<group>"; };
 		548326732B0DE0EDF09D1E3E /* MongrelAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MongrelAppearance.swift; sourceTree = "<group>"; };
 		5E48CC3E025732F1FB7DE0F7 /* DictionaryHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryHelpView.swift; sourceTree = "<group>"; };
@@ -126,14 +131,17 @@
 		766C5FA1653EE56BCF17F0BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		824BA34F5B9E8902EB044FDA /* DictionaryRegionalLatencySmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryRegionalLatencySmokeTests.swift; sourceTree = "<group>"; };
 		8FBDF37754C4E7F09E3A5F6A /* DictionaryApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryApplicationDelegate.swift; sourceTree = "<group>"; };
+		919756B4D41FD447C1D14746 /* test_runtime_compiler.cpython-314.pyc */ = {isa = PBXFileReference; path = "test_runtime_compiler.cpython-314.pyc"; sourceTree = "<group>"; };
 		93D283DE4BF9595C1097E21F /* DictionarySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySettingsView.swift; sourceTree = "<group>"; };
 		942D5D8B3DA5B8CAA8EC128D /* DictionaryLexicalBehaviorDeepSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryLexicalBehaviorDeepSmokeTests.swift; sourceTree = "<group>"; };
 		97D79A771518D66C9D5C0018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9975B8D6791ADFAB92208FB6 /* DictionarySessionStartupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySessionStartupTests.swift; sourceTree = "<group>"; };
+		A1FAD0D1025D37F8F7C029A0 /* PublicCoreCorpusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicCoreCorpusTests.swift; sourceTree = "<group>"; };
 		B29A89F2BB9714313BE73B58 /* DictionarySynonymFallbackLatencySmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySynonymFallbackLatencySmokeTests.swift; sourceTree = "<group>"; };
 		B7AC50D906294A74B9E0BA32 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C2D44293F5E41861DE3774C2 /* DictionaryLexicalIngestionDeepSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryLexicalIngestionDeepSmokeTests.swift; sourceTree = "<group>"; };
 		CC19A24662029F4497182BDA /* DictionaryTranslationFallbackLatencySmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTranslationFallbackLatencySmokeTests.swift; sourceTree = "<group>"; };
+		CF770096F918DB9DBA002375 /* test_runtime_compiler.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = test_runtime_compiler.py; sourceTree = "<group>"; };
 		D97B1956D8FDD16500115EC4 /* DictionaryRegionalCoverageSmokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryRegionalCoverageSmokeTests.swift; sourceTree = "<group>"; };
 		DBA7B2021E35F9FA6D796B1B /* MongrelDictionary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MongrelDictionary.entitlements; sourceTree = "<group>"; };
 		DE30399A03A29D6F09E9D777 /* MongrelDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MongrelDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +172,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03D35E1AAC6CBF0A20BE4BFD /* __pycache__ */ = {
+			isa = PBXGroup;
+			children = (
+				919756B4D41FD447C1D14746 /* test_runtime_compiler.cpython-314.pyc */,
+			);
+			path = __pycache__;
+			sourceTree = "<group>";
+		};
 		512BB11AC9DD6E68C70D7DCB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +241,9 @@
 				32562967597E2D4EE97F3188 /* DictionaryStartupBenchmarkTests.swift */,
 				B29A89F2BB9714313BE73B58 /* DictionarySynonymFallbackLatencySmokeTests.swift */,
 				CC19A24662029F4497182BDA /* DictionaryTranslationFallbackLatencySmokeTests.swift */,
+				A1FAD0D1025D37F8F7C029A0 /* PublicCoreCorpusTests.swift */,
+				CF770096F918DB9DBA002375 /* test_runtime_compiler.py */,
+				03D35E1AAC6CBF0A20BE4BFD /* __pycache__ */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -269,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F206C91EBADD8024B548D2 /* BoundedLookupCache.swift */,
+				50BF5719EF5F6E159DAC0414 /* DictionaryCorpusEdition.swift */,
 				2EA11A4E22913444EFAE3882 /* DictionaryLookupRequest.swift */,
 				5F9E43D74CF9CFBEA6110938 /* DictionaryPreferences.swift */,
 				4B73CB596AAD7FD703D43C50 /* MongrelAppearanceModel.swift */,
@@ -329,6 +349,7 @@
 			buildConfigurationList = F3AAD0BFF296DC06DD86BD54 /* Build configuration list for PBXNativeTarget "MongrelDictionaryTests" */;
 			buildPhases = (
 				7956287E1C449D60542BC650 /* Sources */,
+				0FEEB87FDDA03EFBD67FB01E /* Resources */,
 				E062CFDAC6B01EF9A5CD87CD /* Frameworks */,
 				D64CA2FF2F91A0B8C70802DA /* Embed Frameworks */,
 			);
@@ -398,6 +419,15 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0FEEB87FDDA03EFBD67FB01E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86BD38C2C8B729D78935C217 /* test_runtime_compiler.cpython-314.pyc in Resources */,
+				4E25E614B67FADE8BD22509A /* test_runtime_compiler.py in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B1B87C249E2F66F12717428 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C22FC77F29D48D642B0C958 /* BoundedLookupCache.swift in Sources */,
+				386E73F0E6E026933544A437 /* DictionaryCorpusEdition.swift in Sources */,
 				61AA5CD17885E2F39557DA91 /* DictionaryLookupRequest.swift in Sources */,
 				EEBE186C6A5B72E96E074BF9 /* DictionaryPreferences.swift in Sources */,
 				B1F61AF243CA662EFB0089F9 /* DictionaryRepository.swift in Sources */,
@@ -474,6 +505,7 @@
 				3679435AC454F699AC4F4142 /* DictionaryStartupBenchmarkTests.swift in Sources */,
 				F8B8CDD6BC83D70AD6782BD7 /* DictionarySynonymFallbackLatencySmokeTests.swift in Sources */,
 				27AFC32F6E7A41A82DB1E4C2 /* DictionaryTranslationFallbackLatencySmokeTests.swift in Sources */,
+				C8BC706593426262ACC83FCD /* PublicCoreCorpusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/MongrelDictionary.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2026092405;
+				CURRENT_PROJECT_VERSION = 2026100806;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				"EXCLUDED_ARCHS[sdk=macosx*]" = "";
@@ -531,8 +563,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mongrel.dictionary;
+				MARKETING_VERSION = 0.9.1;
+				MONGREL_DISPLAY_NAME = "Mongrel Dictionary";
+				MONGREL_EDITION_SUFFIX = "";
+				MONGREL_URL_SCHEME = "mongrel-dictionary";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mongrel.dictionary$(MONGREL_EDITION_SUFFIX)";
 				PRODUCT_NAME = MongrelDictionary;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -744,7 +779,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/MongrelDictionary.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2026092405;
+				CURRENT_PROJECT_VERSION = 2026100806;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -757,8 +792,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.9.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mongrel.dictionary;
+				MARKETING_VERSION = 0.9.1;
+				MONGREL_DISPLAY_NAME = "Mongrel Dictionary";
+				MONGREL_EDITION_SUFFIX = "";
+				MONGREL_URL_SCHEME = "mongrel-dictionary";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mongrel.dictionary$(MONGREL_EDITION_SUFFIX)";
 				PRODUCT_NAME = MongrelDictionary;
 				SDKROOT = macosx;
 				STRIP_INSTALLED_PRODUCT = YES;

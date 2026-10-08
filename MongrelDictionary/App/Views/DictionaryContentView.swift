@@ -108,6 +108,7 @@ struct DictionaryContentView: View {
 private struct DictionarySidebarPane: View {
     @EnvironmentObject private var session: DictionarySession
     @ObservedObject private var appearance = MongrelAppearancePreferences.shared
+    @State private var showAllSavedWords = false
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -138,7 +139,7 @@ private struct DictionarySidebarPane: View {
                         .foregroundStyle(DesignTokens.chromeText)
                         .readingBloom(.title)
                     if !session.hasSearched {
-                        Text("Offline dictionary, thesaurus, variants, antonyms, and comparative English.")
+                        Text(DictionaryCorpusEdition.isPublicCore ? DictionaryCorpusEdition.coreDescription : "Offline dictionary, thesaurus, variants, antonyms, and comparative English.")
                             .font(.system(size: 12.5, weight: .medium, design: .rounded))
                             .foregroundStyle(DesignTokens.textSecondary)
                             .fixedSize(horizontal: false, vertical: true)
@@ -203,12 +204,26 @@ private struct DictionarySidebarPane: View {
                     }
 
                     DictionaryTermChips(
-                        terms: Array(session.favoriteTerms.prefix(12)),
+                        terms: showAllSavedWords ? session.favoriteTerms : Array(session.favoriteTerms.prefix(12)),
                         tone: .accent,
                         symbol: "star.fill",
                         removeTitle: "Remove from Saved Shelf",
                         onRemove: { session.removeFavorite($0) }
                     ) { session.selectTerm($0) }
+                    if session.favoriteTerms.count > 12 {
+                        Button(showAllSavedWords ? "Show fewer saved words" : "Show all \(session.favoriteTerms.count) saved words") {
+                            showAllSavedWords.toggle()
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(DesignTokens.textPrimary)
+                        .font(.system(size: 12, weight: .medium))
+                    }
+                    if let notice = session.savedShelfNotice {
+                        Text(notice)
+                            .font(.system(size: 12))
+                            .foregroundStyle(DesignTokens.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
             }
 
@@ -221,7 +236,7 @@ private struct DictionarySidebarPane: View {
                             .buttonStyle(.plain)
                             .font(.system(size: 10, weight: .semibold, design: .rounded))
                             .foregroundStyle(DesignTokens.textMuted)
-                            .help("Forget recent and popular search history.")
+                            .help("Forget recent, popular, and Back/Forward lookup history. Keep the current result and saved words.")
                     }
                     DictionaryTermChips(
                         terms: Array(session.recentTerms.prefix(8)),
@@ -582,7 +597,7 @@ private struct DictionarySearchDeckView: View {
 
     private var intentRow: some View {
         HStack(spacing: 8) {
-            ForEach(Array(QueryIntent.allCases.enumerated()), id: \.element) { index, intent in
+            ForEach(Array(DictionaryCorpusEdition.availableIntents.enumerated()), id: \.element) { index, intent in
                 let isSelected = session.queryIntent == intent
 
                 Button {
@@ -1123,7 +1138,7 @@ private struct DictionaryResultCardView: View {
         Button("Look Up “\(card.title)”") {
             onSelectTerm(card.title)
         }
-        ForEach(QueryIntent.allCases.filter { $0 != .define }) { intent in
+        ForEach(DictionaryCorpusEdition.availableIntents.filter { $0 != .define }) { intent in
             Button("Search \(intent.rawValue.lowercased()) for “\(card.title)”") {
                 onSearchWithIntent(intent)
             }

@@ -285,6 +285,8 @@ final class DictionarySession: ObservableObject {
     private var commitsInBurst = 0
     static let maxVisibleResultCards = 40
     static let maxQueryLength = DictionaryLookupRequest.maximumTermLength
+    static let maximumSavedTerms = 200
+    @Published private(set) var savedShelfNotice: String?
     private var searchRevision: UInt = 0
     private var suggestionRevision: UInt = 0
 
@@ -353,7 +355,7 @@ final class DictionarySession: ObservableObject {
         let storedRecents = (userDefaults.array(forKey: recentTermsKey) as? [String]) ?? []
         let storedFavorites = (userDefaults.array(forKey: favoriteTermsKey) as? [String]) ?? []
         recentTerms = Self.dedupedPreferredTerms(storedRecents, limit: 8)
-        favoriteTerms = Self.dedupedPreferredTerms(storedFavorites, limit: 24)
+        favoriteTerms = Self.dedupedPreferredTerms(storedFavorites, limit: Self.maximumSavedTerms)
         if recentTerms != storedRecents {
             userDefaults.set(recentTerms, forKey: recentTermsKey)
         }
@@ -403,6 +405,12 @@ final class DictionarySession: ObservableObject {
         recentTerms = []
         searchFrequency = [:]
         topSearches = []
+        searchHistory = []
+        searchHistoryIndex = nil
+        // A result already in flight may finish reading, but must not undo the
+        // user's request to forget earlier activity when it eventually arrives.
+        inFlightRecordHistory = false
+        inFlightTrackEngagement = false
         userDefaults.removeObject(forKey: recentTermsKey)
         userDefaults.removeObject(forKey: searchFreqKey)
     }
@@ -1010,6 +1018,7 @@ final class DictionarySession: ObservableObject {
     }
 
     func removeFavorite(_ term: String) {
+        savedShelfNotice = nil
         let normalized = normalizedLookupKey(for: term)
         guard !normalized.isEmpty else { return }
         favoriteTerms.removeAll { normalizedLookupKey(for: $0) == normalized }
@@ -1017,14 +1026,17 @@ final class DictionarySession: ObservableObject {
     }
 
     func toggleFavorite(term: String? = nil) {
-        let rawTerm = (term ?? focusedTerm).trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !rawTerm.isEmpty else { return }
+        savedShelfNotice = nil
+        guard let rawTerm = DictionaryLookupRequest.normalizedTerm(term ?? focusedTerm) else { return }
         let normalized = normalizedLookupKey(for: rawTerm)
         if let existingIndex = favoriteTerms.firstIndex(where: { normalizedLookupKey(for: $0) == normalized }) {
             favoriteTerms.remove(at: existingIndex)
         } else {
+            guard favoriteTerms.count < Self.maximumSavedTerms else {
+                savedShelfNotice = "Your Saved Shelf holds \(Self.maximumSavedTerms) words. Remove a saved word before adding another. Nothing was removed."
+                return
+            }
             favoriteTerms.insert(rawTerm, at: 0)
-            favoriteTerms = Array(favoriteTerms.prefix(24))
         }
         userDefaults.set(favoriteTerms, forKey: favoriteTermsKey)
     }

@@ -2151,6 +2151,52 @@ final class DictionarySessionStartupTests: XCTestCase {
         XCTAssertEqual(session.recentTerms, ["Cat", "dog"])
     }
 
+    func testSavedShelfDoesNotSilentlyEvictEarlierWords() {
+        let (suiteName, defaults) = makeIsolatedDefaults()
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let session = DictionarySession(repository: SessionRepositoryDouble(), userDefaults: defaults, restoreLastLookupOnReady: false)
+        for index in 0..<200 { session.toggleFavorite(term: "saved-\(index)") }
+        XCTAssertEqual(session.favoriteTerms.count, 200)
+        let saved = session.favoriteTerms
+        session.toggleFavorite(term: "one-too-many")
+        XCTAssertEqual(session.favoriteTerms, saved, "A full shelf must reject a new save, not delete another word")
+        XCTAssertTrue(session.isFavorite("saved-0"))
+        session.removeFavorite("saved-10")
+        session.toggleFavorite(term: "replacement")
+        XCTAssertTrue(session.isFavorite("replacement"))
+        XCTAssertTrue(session.isFavorite("saved-0"))
+    }
+
+    func testClearHistoryPreventsPendingLookupFromRepopulatingHistory() async {
+        let (suiteName, defaults) = makeIsolatedDefaults()
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let repository = SessionRepositoryDouble()
+        let session = DictionarySession(repository: repository, userDefaults: defaults, restoreLastLookupOnReady: false)
+        await waitUntil("ready for history privacy regression") { session.startup.phase == .ready }
+        session.selectTerm("first")
+        await waitUntil("first committed") { session.lastSearchedTerm == "first" && !session.isSearching }
+        session.selectTerm("second")
+        await waitUntil("second committed") { session.lastSearchedTerm == "second" && !session.isSearching }
+        XCTAssertTrue(session.canGoBack)
+        await repository.setBlockSearch(true)
+        session.selectTerm("pending")
+        // Yield until the fake repository has suspended this request.
+        for _ in 0..<100 {
+            if await repository.recordedSearchCount() >= 3 { break }
+            try? await Task.sleep(nanoseconds: 5_000_000)
+        }
+        session.clearHistory()
+        XCTAssertFalse(session.canGoBack)
+        XCTAssertFalse(session.canGoForward)
+        await repository.releaseSearch()
+        await waitUntil("pending result can still finish without recording history") { !session.isSearching }
+        session.flushPendingPersistence()
+        XCTAssertTrue(session.recentTerms.isEmpty)
+        XCTAssertTrue(session.topSearches.isEmpty)
+        XCTAssertFalse(session.canGoBack)
+        XCTAssertTrue((defaults.stringArray(forKey: "mongrel.dictionary.recentTerms") ?? []).isEmpty)
+    }
+
     func testClearDeskResetsLookupHistory() async {
         let (suiteName, userDefaults) = makeIsolatedDefaults()
         defer { userDefaults.removePersistentDomain(forName: suiteName) }

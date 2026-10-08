@@ -78,6 +78,13 @@ struct QuickLookupView: View {
 
             searchField
 
+            if let notice = session.savedShelfNotice {
+                Text(notice)
+                    .font(.system(size: 12))
+                    .foregroundStyle(DesignTokens.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
             if session.lastSearchTimedOut {
                 HStack {
                     Text(session.lastTimedOutTerm.isEmpty
@@ -149,7 +156,7 @@ struct QuickLookupView: View {
                 get: { session.queryIntent },
                 set: { session.selectIntent($0) }
             )) {
-                ForEach(QueryIntent.allCases) { intent in
+                ForEach(DictionaryCorpusEdition.availableIntents) { intent in
                     Label(intent.rawValue, systemImage: intent.systemImage).tag(intent)
                 }
             }

@@ -215,9 +215,11 @@ private struct DictionaryCommands: Commands {
 
             Button("Translation") { session.selectIntent(.translation) }
                 .keyboardShortcut("3", modifiers: .command)
+                .disabled(DictionaryCorpusEdition.isPublicCore)
 
             Button("Slang") { session.selectIntent(.slang) }
                 .keyboardShortcut("4", modifiers: .command)
+                .disabled(DictionaryCorpusEdition.isPublicCore)
         }
 
         CommandGroup(replacing: .help) {

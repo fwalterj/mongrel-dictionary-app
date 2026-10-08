@@ -16,6 +16,7 @@ xcodebuild -version >/dev/null
 mkdir -p "${SOURCE_BUILD_ROOT}"
 SOURCE_BUILD_ROOT="$(cd "${SOURCE_BUILD_ROOT}" && pwd)"
 cd "${PROJECT_ROOT}"
+python3 -m unittest discover -s Tests -p 'test_*.py' -v
 xcodegen generate
 
 echo "Building optimized universal application source (no corpus or installer claim)."

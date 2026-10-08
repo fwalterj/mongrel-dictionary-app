@@ -19,12 +19,14 @@
 			<string>com.mongrel.dictionary.lookup</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mongrel-dictionary</string>
+                <string>$(MONGREL_URL_SCHEME)</string>
 			</array>
 		</dict>
 	</array>
   <key>CFBundleName</key>
   <string>$(PRODUCT_NAME)</string>
+  <key>CFBundleDisplayName</key>
+  <string>$(MONGREL_DISPLAY_NAME)</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleShortVersionString</key>
@@ -41,12 +43,12 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Look Up in Mongrel Dictionary</string>
+                <string>Look Up in $(MONGREL_DISPLAY_NAME)</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>lookup</string>
 			<key>NSPortName</key>
-			<string>MongrelDictionary</string>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>NSSendTypes</key>
 			<array>
 				<string>public.utf8-plain-text</string>

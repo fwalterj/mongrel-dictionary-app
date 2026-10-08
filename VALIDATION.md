@@ -1,4 +1,17 @@
-# Public source verification — 25 September 2026
+# Dictionary validation
+
+## 8 October 2026 — polish and separate Core Beta preparation
+
+- Universal optimized source compilation passed; **87 native Release fixture tests** passed with zero failures. Five Python tooling regressions also passed. The corpus-free GitHub workflow runs these checks without downloading data.
+- Reproduced and fixed silent Saved Shelf eviction and pending lookups repopulating cleared history. The shelf now holds 200 words, exposes all entries, and refuses overflow without deleting earlier saves.
+- Reproduced and fixed OEWN homographs overwriting earlier senses. Tests preserve noun and verb senses while deduplicating repeated references.
+- A separate public-core recipe produced 152,549 distinct searchable headwords from hash-verified OEWN 2025 and WordNet 3.0 inputs, preserving upstream notices. Its strict runtime validator passed. Negative tests reject mixed-in evaluation data, missing licenses, altered data and symlinks.
+- Source changes preserve the supplied September icon refresh. The installed evaluation Dictionary and Browser were not replaced.
+- **92 native Release tests passed with the public-core corpus**, zero failures, including everyday definitions/synonyms, explicit unsupported-mode messaging, both corpus-dependent consistency tests and the diverse workload. The workload exercises the edition's available modes, not absent Translation/Slang shortcuts.
+- Three rounds of 1,000 diverse cache-bypassed lookups held test-process physical footprint at approximately 28.9 MB, with less than 0.1 MB growth between first and third rounds. Per-round p95 repository lookup timing was about 0.29–0.31 ms. These are warm repository/XCTest measurements, **not** GUI memory, cold-start latency, or a promise for every query. Another 1,000 repeated mixed lookups and 10,000 fixture misses passed bounded-cache checks.
+- Signing and release status are recorded below as they complete. This entry alone is not a public-release claim. Physical Intel/macOS 14 and spoken VoiceOver testing remain outstanding.
+
+## Historical baseline — 25 September 2026
 
 This record concerns the source-available application snapshot. It does not replace the separate evaluation app's release or corpus validation.
 

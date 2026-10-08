@@ -39,4 +39,35 @@ Read [design decisions](DESIGN-DECISIONS.md) for the reasoning behind those boun
 
 The evaluation build uses independently licensed WordNet, thesaurus, bilingual, regional, and reference materials. Public distribution requires the exact upstream notices, any required corresponding source, and an established provenance for the reference notes. The current evaluation data is excluded while those items are resolved. Neither Perimeter nor notarization clears that data for redistribution.
 
-The ordinary `build-beta.sh` validates the complete runtime before packaging. It must fail on this source-only checkout. A later public corpus must be identified, licensed, bundled, tested, and packaged as a new release before this repository offers a DMG or ZIP. Public releases should record the exact public source commit and any separately identified data inputs.
+The ordinary `build-beta.sh` validates the complete evaluation runtime before packaging. It must fail on a source-only checkout. Public releases record the public source commit and separately identified data inputs. Notarization requires committed authored source; the generated Xcode project is regenerated from `project.yml` and the locally present resources, so its generated resource-list differences are excluded from that clean-source check.
+
+## Separate public-core candidate
+
+The optional Core Beta recipe fetches **only** Open English Wordnet 2025 and Princeton WordNet 3.0 from upstream. Fixed SHA-256 checksums cover every input, including license texts. An upstream change stops the build for review. It does not read the private evaluation corpus. OEWN uses [CC BY 4.0](https://en-word.net/downloads); [Princeton's terms](https://wordnet.princeton.edu/license-and-commercial-use) permit redistribution with their notices. All original notices, attribution, modification information, source URLs and a manifest accompany the transformed data; those data licenses are separate from Perimeter.
+
+Use a **separate source checkout**, not the evaluation checkout. Python 3.10+ is required. From `MongrelDictionary`:
+
+```bash
+python3 Scripts/prepare-public-core.py
+python3 Scripts/verify-runtime.py --edition public-core --root build/public-core-corpus
+# Only in a checkout whose OfflineArchives contains README.md and no corpus:
+cp build/public-core-corpus/* App/Data/OfflineArchives/
+./Scripts/verify-public-core.sh
+```
+
+The builder refuses to overwrite an output directory. Select a fresh `--output` when regenerating. The validator rejects extra evaluation archives, missing notices, changed checksums, symlinks, malformed archives and damaged/incomplete databases. Generated corpus files remain Git-ignored. Source-only verification and its CI job never download them automatically.
+
+The resulting edition has 127,306 modern headwords, 147,806 classic headwords, **152,549 distinct searchable headwords**, and 110,708 synonym rows. These are index counts, not a promise of that many independent definitions. Homographs retain senses across parts of speech. The interface offers Define and Synonyms, explains its exclusions, and exposes corpus notices in Help. No bilingual database, dedicated regional/slang collections, Moby/OpenOffice thesaurus, or reference notes are included.
+
+After review and a source commit, packaging can use existing Keychain credentials:
+
+```bash
+./Scripts/build-beta.sh --edition public-core --beta-number 6 \
+  --signing-identity 'Developer ID Application: YOUR NAME (TEAMID)' \
+  --notary-profile 'YOUR SAVED KEYCHAIN PROFILE' \
+  --output /absolute/path/to/a/new/candidate-directory
+```
+
+Omit signing/notary options for an ad-hoc local candidate, **not** an authenticated public download. Never put passwords, keys or certificates in this repository. The script signs the nested framework and app, notarizes/staples the app before DMG creation, then signs/notarizes/staples the DMG and checks Gatekeeper. ZIP, DMG, SHA-256 checksums, `BUILD-INFO.txt` and `PUBLIC-CORPUS.json` identify the candidate. Signing does not publish anything.
+
+Core uses `com.mongrel.dictionary.corebeta`, the `mongrel-dictionary-core:` URL scheme, and a distinctly named Services entry. Its preferences and filename are separate from the evaluation app. **Do not replace the fuller installed Dictionary.** Public release of this narrower edition remains a product/release-review decision; preparation does not silently redefine the full Dictionary's coverage.

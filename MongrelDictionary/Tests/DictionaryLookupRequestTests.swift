@@ -2,6 +2,10 @@ import XCTest
 @testable import MongrelDictionaryCore
 
 final class DictionaryLookupRequestTests: XCTestCase {
+    func testCoreDeepLinkUsesTheSameValidatedRequestParsing() throws {
+        let url = try XCTUnwrap(URL(string: "mongrel-dictionary-core://lookup?term=bank&intent=synonyms"))
+        XCTAssertEqual(DictionaryLookupRequest(url: url), DictionaryLookupRequest(term: "bank", intent: .synonyms))
+    }
     func testNormalizesSelectedTextForServiceLookup() throws {
         let request = try XCTUnwrap(DictionaryLookupRequest(term: "  state\n  of   the art  "))
         XCTAssertEqual(request.term, "state of the art")

@@ -1,7 +1,9 @@
 import Foundation
 
 public struct DictionaryLookupRequest: Equatable, Sendable {
-    public static let urlScheme = "mongrel-dictionary"
+    public static var urlScheme: String {
+        DictionaryCorpusEdition.isPublicCore ? "mongrel-dictionary-core" : "mongrel-dictionary"
+    }
     public static let maximumTermLength = 240
 
     public let term: String
@@ -14,7 +16,7 @@ public struct DictionaryLookupRequest: Equatable, Sendable {
     }
 
     public init?(url: URL) {
-        guard url.scheme?.lowercased() == Self.urlScheme,
+        guard ["mongrel-dictionary", "mongrel-dictionary-core"].contains(url.scheme?.lowercased() ?? ""),
               let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return nil
         }

@@ -5,12 +5,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 OUTPUT_DIR="${PROJECT_ROOT}/release"
 CONFIGURATION="Release"
-BETA_NUMBER="5"
+BETA_NUMBER="6"
 ARCHITECTURES="arm64 x86_64"
 ARCH_LABEL="universal"
 SIGNING_IDENTITY="${MONGREL_SIGNING_IDENTITY:-}"
 NOTARY_PROFILE="${MONGREL_NOTARY_PROFILE:-}"
 AD_HOC_SIGN=1
+EDITION="evaluation"
+EDITION_SUFFIX=""
+APP_DISPLAY_NAME="Mongrel Dictionary"
+URL_SCHEME="mongrel-dictionary"
 
 usage() {
   cat <<'EOF'
@@ -19,7 +23,8 @@ Usage: build-beta.sh [options]
 Builds a self-contained Mongrel Dictionary Beta as both ZIP and DMG.
 
 Options:
-  --beta-number NUMBER       Beta sequence number (default: 5)
+  --beta-number NUMBER       Beta sequence number (default: 6)
+  --edition public-core      Package the separately prepared English Core Beta
   --architecture universal  Build arm64 + x86_64 (default)
   --architecture arm64      Build Apple Silicon only
   --signing-identity NAME    Developer ID Application identity to use
@@ -40,7 +45,7 @@ EOF
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --beta-number|--architecture|--signing-identity|--notary-profile|--output)
+    --beta-number|--architecture|--signing-identity|--notary-profile|--output|--edition)
       if [[ $# -lt 2 || -z "$2" || "$2" == --* ]]; then
         echo "$1 requires a value." >&2
         exit 2
@@ -48,6 +53,13 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
   case "$1" in
+    --edition)
+      if [[ "$2" != "public-core" && "$2" != "evaluation" ]]; then
+        echo "Unknown edition: $2" >&2; exit 2
+      fi
+      EDITION="$2"
+      shift 2
+      ;;
     --beta-number)
       BETA_NUMBER="$2"
       shift 2
@@ -119,7 +131,21 @@ if ! xcodebuild -version >/dev/null 2>&1; then
 fi
 
 cd "${PROJECT_ROOT}"
-python3 "${SCRIPT_DIR}/verify-runtime.py"
+# XcodeGen expands the locally present, ignored corpus into the checked-in
+# project. project.yml and all authored source must be committed; that generated
+# resource list is deliberately not treated as an authored source change.
+SOURCE_COMMIT="$(git rev-parse HEAD)"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+if [[ -n "${NOTARY_PROFILE}" && -n "$(git -C "${REPO_ROOT}" status --porcelain -- . ':(exclude)MongrelDictionary/MongrelDictionary.xcodeproj/project.pbxproj')" ]]; then
+  echo "Commit source changes before producing a notarized release." >&2
+  exit 1
+fi
+python3 "${SCRIPT_DIR}/verify-runtime.py" --edition "${EDITION}"
+if [[ "${EDITION}" == "public-core" ]]; then
+  EDITION_SUFFIX=".corebeta"
+  APP_DISPLAY_NAME="Mongrel Dictionary Core Beta"
+  URL_SCHEME="mongrel-dictionary-core"
+fi
 xcodegen generate >/tmp/mongrel_dictionary_beta_xcodegen.log 2>&1
 
 xcodebuild -project MongrelDictionary.xcodeproj -scheme MongrelDictionary \
@@ -131,10 +157,13 @@ if [[ -z "${VERSION}" ]]; then
 fi
 
 PRODUCT_BASENAME="Mongrel-Dictionary-${VERSION}-beta.${BETA_NUMBER}-macOS-${ARCH_LABEL}"
+if [[ "${EDITION}" == "public-core" ]]; then
+  PRODUCT_BASENAME="Mongrel-Dictionary-Core-${VERSION}-beta.${BETA_NUMBER}-macOS-${ARCH_LABEL}"
+fi
 STAGING_ROOT="$(mktemp -d /tmp/mongrel-dictionary-beta.XXXXXX)"
 DERIVED_DATA_PATH="${STAGING_ROOT}/derived"
 APP_SOURCE="${DERIVED_DATA_PATH}/Build/Products/${CONFIGURATION}/MongrelDictionary.app"
-APP_STAGED="${STAGING_ROOT}/Mongrel Dictionary.app"
+APP_STAGED="${STAGING_ROOT}/${APP_DISPLAY_NAME}.app"
 DMG_ROOT="${STAGING_ROOT}/disk-image"
 ZIP_PATH="${OUTPUT_DIR}/${PRODUCT_BASENAME}.zip"
 DMG_PATH="${OUTPUT_DIR}/${PRODUCT_BASENAME}.dmg"
@@ -160,6 +189,9 @@ xcodebuild \
   ARCHS="${ARCHITECTURES}" \
   ONLY_ACTIVE_ARCH=NO \
   CODE_SIGNING_ALLOWED=NO \
+  MONGREL_EDITION_SUFFIX="${EDITION_SUFFIX}" \
+  MONGREL_DISPLAY_NAME="${APP_DISPLAY_NAME}" \
+  MONGREL_URL_SCHEME="${URL_SCHEME}" \
   build >/tmp/mongrel_dictionary_beta_build.log 2>&1
 
 if [[ ! -d "${APP_SOURCE}" ]]; then
@@ -170,16 +202,16 @@ fi
 ditto "${APP_SOURCE}" "${APP_STAGED}"
 
 # Identify the exact source used to produce the executable, before signing.
-SOURCE_COMMIT="$(git rev-parse HEAD)"
-if [[ -n "${NOTARY_PROFILE}" && -n "$(git status --porcelain)" ]]; then
-  echo "Commit tracked changes before producing a notarized release." >&2
-  exit 1
-fi
 BUILD_NUMBER="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "${APP_STAGED}/Contents/Info.plist")"
-printf 'Source commit: %s\nBuild: %s\nArchitectures: %s\nMinimum macOS: 14.0\n' \
-  "${SOURCE_COMMIT}" "${BUILD_NUMBER}" "${ARCHITECTURES}" \
+printf 'Source commit: %s\nBuild: %s\nArchitectures: %s\nEdition: %s\nMinimum macOS: 14.0\n' \
+  "${SOURCE_COMMIT}" "${BUILD_NUMBER}" "${ARCHITECTURES}" "${EDITION}" \
   >"${APP_STAGED}/Contents/Resources/BUILD-INFO.txt"
 cp "${APP_STAGED}/Contents/Resources/BUILD-INFO.txt" "${OUTPUT_DIR}/BUILD-INFO.txt"
+cp "${REPO_ROOT}/LICENSE" "${APP_STAGED}/Contents/Resources/APP-LICENSE.txt"
+cp "${REPO_ROOT}/NOTICE.md" "${APP_STAGED}/Contents/Resources/APP-NOTICE.txt"
+if [[ "${EDITION}" == "public-core" ]]; then
+  cp "${PROJECT_ROOT}/App/Data/OfflineArchives/PUBLIC-CORPUS.json" "${OUTPUT_DIR}/PUBLIC-CORPUS.json"
+fi
 
 echo "[2/7] Signing application"
 if [[ "${AD_HOC_SIGN}" -eq 1 ]]; then
@@ -221,16 +253,20 @@ else
 fi
 
 echo "[4/7] Creating DMG"
-ditto "${APP_STAGED}" "${DMG_ROOT}/Mongrel Dictionary.app"
+ditto "${APP_STAGED}" "${DMG_ROOT}/${APP_DISPLAY_NAME}.app"
 ln -s /Applications "${DMG_ROOT}/Applications"
 printf '%s\n' \
   'Mongrel Dictionary Beta' \
   '' \
-  'Drag Mongrel Dictionary to Applications.' \
+  "Drag ${APP_DISPLAY_NAME} to Applications." \
   'This build works entirely offline after installation.' \
   '' \
   "Signing: ${SIGNING_LABEL}" \
   >"${DMG_ROOT}/README-FIRST.txt"
+if [[ "${EDITION}" == "public-core" ]]; then
+  cp "${PROJECT_ROOT}/App/Data/OfflineArchives/CORPUS-NOTICES.txt" "${DMG_ROOT}/CORPUS-NOTICES.txt"
+  printf '\nCore Beta includes English definitions and synonyms only. It uses a separate app identity and does not replace the evaluation Dictionary.\n' >>"${DMG_ROOT}/README-FIRST.txt"
+fi
 hdiutil create \
   -volname "Mongrel Dictionary Beta" \
   -srcfolder "${DMG_ROOT}" \

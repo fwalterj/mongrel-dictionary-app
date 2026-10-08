@@ -231,15 +231,20 @@ def build_wordnet_2025(path: Path) -> dict[str, object]:
                 trimmed_headword = current_headword.strip()
                 key = normalize_lookup_key(current_headword)
                 if key:
-                    synsets_by_headword[key] = list(current_synsets)
+                    # A spelling can occur in multiple lexical entries/POS.
+                    # Merge senses instead of letting the final entry erase
+                    # earlier noun/verb meanings of words such as "bank".
+                    existing = synsets_by_headword.setdefault(key, [])
+                    added = [synset for synset in dict.fromkeys(current_synsets) if synset not in existing]
+                    existing.extend(added)
                     for synset in current_synsets:
                         lemmas = headwords_by_synset.setdefault(synset, [])
                         if trimmed_headword and trimmed_headword not in lemmas:
                             lemmas.append(trimmed_headword)
                     if current_pos:
-                        pos_by_headword[key] = current_pos
+                        pos_by_headword.setdefault(key, current_pos)
                         pos_map = synset_count_by_pos_by_headword.setdefault(key, {})
-                        pos_map[current_pos] = pos_map.get(current_pos, 0) + len(current_synsets)
+                        pos_map[current_pos] = pos_map.get(current_pos, 0) + len(added)
                     entry_count += 1
         elif tag == "Definition":
             if current_synset_id:

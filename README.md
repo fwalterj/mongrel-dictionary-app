@@ -10,6 +10,8 @@ Mongrel Dictionary brings definitions, synonyms, regional vocabulary, and word-l
 
 **The application source is public here. A public installer is not available yet.** The existing evaluation corpus is undergoing a redistribution and attribution review, so its data and old installers are excluded from this checkout. The application code, tests, and build tools are available for inspection and source-only verification.
 
+A separate **Core Beta candidate** is being prepared using Open English Wordnet 2025 and Princeton WordNet 3.0: offline English definitions and synonyms, about **152,000 searchable headwords**. It deliberately excludes the evaluation edition's translation database, dedicated regional/slang collections, and reference notes. This is a narrower edition, not a replacement or a claim that the wider corpus is cleared. The [reproducible corpus recipe and release checks](DEVELOPMENT.md#separate-public-core-candidate) are public; downloadable assets remain pending release review.
+
 The app targets macOS 14 and later, with Apple Silicon and Intel builds. The evaluation app has been exercised on Apple Silicon running macOS 27. Physical Intel and macOS 14 testing remain outstanding. A source build without the corpus is not a replacement for a functioning Dictionary installation.
 
 ## One app in a body of work

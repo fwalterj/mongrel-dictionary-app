@@ -58,7 +58,10 @@ targets:
 
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.mongrel.dictionary
+        PRODUCT_BUNDLE_IDENTIFIER: "com.mongrel.dictionary$(MONGREL_EDITION_SUFFIX)"
+        MONGREL_EDITION_SUFFIX: ""
+        MONGREL_DISPLAY_NAME: Mongrel Dictionary
+        MONGREL_URL_SCHEME: mongrel-dictionary
         PRODUCT_NAME: MongrelDictionary
         SWIFT_VERSION: 5.9
         MACOSX_DEPLOYMENT_TARGET: 14.0
@@ -69,8 +72,8 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         INFOPLIST_KEY_CFBundleDisplayName: Mongrel Dictionary
         INFOPLIST_KEY_NSHumanReadableCopyright: "© 2026 Mongrel"
-        MARKETING_VERSION: 0.9.0
-        CURRENT_PROJECT_VERSION: 2026092405
+        MARKETING_VERSION: 0.9.1
+        CURRENT_PROJECT_VERSION: 2026100806
         SWIFT_STRICT_CONCURRENCY: complete
         EXCLUDED_ARCHS[sdk=macosx*]: ""
         ARCHS: "$(ARCHS_STANDARD)"
