@@ -1587,7 +1587,7 @@ public actor DictionaryRepository {
             posBreakdownLabel = "\(posLabel): \(synsets.count)"
         }
 
-        let definitions = synsets.prefix(6).compactMap { index.definitionBySynset[$0] }
+        let definitions = synsets.compactMap { index.definitionBySynset[$0] }
         guard !definitions.isEmpty else { return [] }
 
         let relatedLemmas = dedupePreservingOrder(
@@ -2571,7 +2571,7 @@ public actor DictionaryRepository {
             posLabel = "classic"
         }
 
-        var summary = definitions.prefix(6).enumerated()
+        var summary = definitions.enumerated()
             .map { i, def in "\(i + 1). \(def)" }
             .joined(separator: "  ·  ")
 
@@ -3361,10 +3361,9 @@ public actor DictionaryRepository {
         relatedLimit: Int
     ) -> String {
         var summary = definitions
-            .prefix(6)
             .enumerated()
             .map { "\($0.offset + 1). \($0.element)" }
-            .joined(separator: "  ·  ")
+            .joined(separator: "\n")
         if !relatedTerms.isEmpty {
             summary += "  ·  Related lemmas: \(relatedTerms.prefix(relatedLimit).joined(separator: ", "))."
         }

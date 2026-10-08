@@ -431,7 +431,7 @@ def build_fast_lookup_archive(wordnet_2025: dict[str, object], wordnet_classic: 
     synset_count_by_pos = wordnet_2025["synsetCountByPOSByHeadword"]
 
     for headword, synsets in synsets_by_headword.items():
-        definitions = [definition_by_synset[synset] for synset in synsets[:2] if synset in definition_by_synset]
+        definitions = [definition_by_synset[synset] for synset in synsets if synset in definition_by_synset]
         if not definitions:
             continue
 
@@ -492,7 +492,7 @@ def write_fast_lookup_sqlite(path: Path, wordnet_2025: dict[str, object]) -> Non
 
         rows: list[tuple[str, str, str, str, int, int]] = []
         for headword, synsets in synsets_by_headword.items():
-            definitions = [definition_by_synset[synset] for synset in synsets[:2] if synset in definition_by_synset]
+            definitions = [definition_by_synset[synset] for synset in synsets if synset in definition_by_synset]
             if not definitions:
                 continue
 

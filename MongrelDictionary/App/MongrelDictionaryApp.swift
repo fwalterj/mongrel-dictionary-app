@@ -8,7 +8,7 @@ struct MongrelDictionaryApp: App {
     @StateObject private var session = DictionarySession()
 
     var body: some Scene {
-        WindowGroup("Mongrel Dictionary", id: "dictionary-main") {
+        Window("Mongrel Dictionary", id: "dictionary-main") {
             DictionaryContentView()
                 .environmentObject(session)
                 .mongrelAppearance()
@@ -20,7 +20,6 @@ struct MongrelDictionaryApp: App {
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 1180, height: 780)
-        .handlesExternalEvents(matching: [DictionaryLookupRequest.urlScheme])
 
         Window("Quick Lookup", id: "quick-lookup") {
             QuickLookupView()

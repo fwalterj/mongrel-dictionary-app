@@ -70,7 +70,7 @@ enum DictionaryResultPresentation {
             break
         }
 
-        if lower.contains("thesaurus") { return "Synonyms" }
+        if lower.contains("thesaurus") || lower.contains("synonyms") { return "Synonyms" }
         if lower.contains("freedict") || lower.contains("za mafoko") { return "Translation" }
         if source.hasPrefix("No match") { return "No direct match" }
         return "Reference entry"

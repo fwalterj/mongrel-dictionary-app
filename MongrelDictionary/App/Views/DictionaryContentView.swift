@@ -370,7 +370,7 @@ private struct DictionaryDetailHeaderView: View {
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
 
-                    Text("Offline local search across dictionary, thesaurus, variants, and reference notes.")
+                    Text(DictionaryCorpusEdition.isPublicCore ? "Offline English definitions and synonyms. No account or connection needed." : "Offline local search across dictionary, thesaurus, variants, and reference notes.")
                         .font(.system(size: 13.5, weight: .medium, design: .rounded))
                         .foregroundStyle(DesignTokens.textSecondary)
                         .frame(maxWidth: 760, alignment: .leading)
@@ -525,7 +525,7 @@ private struct DictionarySearchDeckView: View {
                 .accessibilityHidden(true)
 
             TextField(
-                session.isLookupSettled ? "Search" : "Search headwords, phrases, dialect forms, translations",
+                session.isLookupSettled ? "Search" : (DictionaryCorpusEdition.isPublicCore ? "Search English words and phrases" : "Search headwords, phrases, dialect forms, translations"),
                 text: $session.query
             )
                 .textFieldStyle(.plain)
@@ -859,7 +859,7 @@ private struct DictionaryResultsColumn: View {
                 .foregroundStyle(DesignTokens.chromeText)
                 .readingBloom(.title)
 
-            Text("Headwords. Phrases. Dialect forms. Translations. Type three letters and results begin to fill.")
+            Text(DictionaryCorpusEdition.isPublicCore ? "English words and phrases. Definitions and synonyms. Type three letters to begin; Return keeps the lookup in history." : "Headwords. Phrases. Dialect forms. Translations. Type three letters and results begin to fill.")
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundStyle(DesignTokens.textSecondary)
                 .frame(maxWidth: 640, alignment: .leading)

@@ -35,4 +35,12 @@ final class PublicCoreCorpusTests: XCTestCase {
             XCTAssertTrue(cards[0].summary.contains("not included"))
         }
     }
+
+    func testPolysemousEntryIncludesEveryImportedDefinition() async throws {
+        try requireCoreCorpus()
+        let repository = DictionaryRepository()
+        let cards = await repository.search(term: "bank", intent: .define)
+        let card = try XCTUnwrap(cards.first { $0.source.contains("2025") })
+        XCTAssertTrue(card.summary.contains("18. "), "Bank must not advertise 18 senses while silently presenting only two or six.")
+    }
 }

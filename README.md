@@ -12,6 +12,8 @@ Mongrel Dictionary brings definitions, synonyms, regional vocabulary, and word-l
 
 A separate **Core Beta candidate** is being prepared using Open English Wordnet 2025 and Princeton WordNet 3.0: offline English definitions and synonyms, about **152,000 searchable headwords**. It deliberately excludes the evaluation edition's translation database, dedicated regional/slang collections, and reference notes. This is a narrower edition, not a replacement or a claim that the wider corpus is cleared. The [reproducible corpus recipe and release checks](DEVELOPMENT.md#separate-public-core-candidate) are public; downloadable assets remain pending release review.
 
+The October polish adds a 200-word Saved Shelf without silent eviction, history clearing that survives pending lookups, and complete imported WordNet senses behind readable expand/collapse controls. [Validation](VALIDATION.md) distinguishes verified behavior from remaining release gates.
+
 The app targets macOS 14 and later, with Apple Silicon and Intel builds. The evaluation app has been exercised on Apple Silicon running macOS 27. Physical Intel and macOS 14 testing remain outstanding. A source build without the corpus is not a replacement for a functioning Dictionary installation.
 
 ## One app in a body of work

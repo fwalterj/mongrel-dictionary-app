@@ -6,6 +6,7 @@ import hashlib
 import json
 import subprocess
 import sys
+import sqlite3
 
 spec = importlib.util.spec_from_file_location("compiler", Path(__file__).resolve().parents[1] / "Scripts/compile-offline-runtime.py")
 compiler = importlib.util.module_from_spec(spec)
@@ -63,6 +64,11 @@ class RuntimeCompilerTests(unittest.TestCase):
             path = Path(directory) / "fixture.xml"
             path.write_text(xml)
             archive = compiler.build_wordnet_2025(path)
+            database = Path(directory) / "FastLookup.sqlite3"
+            compiler.write_fast_lookup_sqlite(database, archive)
+            with sqlite3.connect(database) as connection:
+                definitions = connection.execute("SELECT definitions_blob FROM define_entries WHERE headword='bank'").fetchone()[0].split("\u001f")
+            self.assertEqual(len(definitions), 3, "The fast index must not truncate definitions to two senses")
         self.assertEqual(archive["synsetsByHeadword"]["bank"], ["noun", "verb", "river"])
         self.assertEqual(archive["synsetCountByPOSByHeadword"]["bank"], {"n": 2, "v": 1})
         self.assertEqual(len(archive["sortedHeadwords"]), 1)

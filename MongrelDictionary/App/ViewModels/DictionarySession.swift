@@ -671,7 +671,7 @@ final class DictionarySession: ObservableObject {
         case .define:
             return "Definitions, usage, contrasts, and nearby variants."
         case .synonyms:
-            return "Thesaurus-first lookup with reference pivots as fallback."
+            return DictionaryCorpusEdition.isPublicCore ? "Related words from Princeton WordNet 3.0." : "Thesaurus-first lookup with reference pivots as fallback."
         case .translation:
             return "Bilingual and multilingual sources with definition context."
         case .slang:
